@@ -1,8 +1,9 @@
 import { Box, Button, Card, Container, Flex, Theme } from "@radix-ui/themes";
-import { Footer } from "../components/footer";
-import { SignInButton } from "../components/sign-in-button";
-import { Link, Outlet, useNavigate } from "react-router-dom";
 import { AuthKitProvider } from "@workos-inc/authkit-react";
+import { Link, Outlet, useNavigate } from "react-router-dom";
+import { Footer } from "../components/footer";
+import { OrganizationSwitcher } from "../components/organization-switcher";
+import { SignInButton } from "../components/sign-in-button";
 
 export default function Layout() {
   const navigate = useNavigate();
@@ -34,11 +35,18 @@ export default function Layout() {
                         </Button>
 
                         <Button asChild variant="soft">
+                          <Link to="/users">Users</Link>
+                        </Button>
+
+                        <Button asChild variant="soft">
                           <Link to="/account">Account</Link>
                         </Button>
                       </Flex>
 
-                      <SignInButton />
+                      <Flex gap="4">
+                        <OrganizationSwitcher />
+                        <SignInButton />
+                      </Flex>
                     </header>
                   </Flex>
 

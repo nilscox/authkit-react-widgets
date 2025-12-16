@@ -1,11 +1,12 @@
+import "@radix-ui/themes/styles.css";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Root from "./routes/root";
-import "@radix-ui/themes/styles.css";
 import Index from "./routes";
 import Account from "./routes/account";
 import Login from "./routes/login";
+import Root from "./routes/root";
+import { Users } from "./routes/users";
 
 const router = createBrowserRouter([
   {
@@ -13,6 +14,10 @@ const router = createBrowserRouter([
     element: <Root />,
     children: [
       { index: true, element: <Index /> },
+      {
+        path: "/users",
+        element: <Users />,
+      },
       {
         path: "/account",
         element: <Account />,
