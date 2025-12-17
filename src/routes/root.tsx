@@ -1,12 +1,15 @@
 import { Box, Button, Card, Container, Flex, Theme } from "@radix-ui/themes";
 import { AuthKitProvider } from "@workos-inc/authkit-react";
+import React from "react";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { Footer } from "../components/footer";
 import { OrganizationSwitcher } from "../components/organization-switcher";
 import { SignInButton } from "../components/sign-in-button";
 
 export default function Layout() {
+  const [key, setKey] = React.useState(0);
   const navigate = useNavigate();
+
   return (
     <AuthKitProvider
       clientId={import.meta.env.VITE_WORKOS_CLIENT_ID}
@@ -16,8 +19,10 @@ export default function Layout() {
           navigate(state.returnTo);
         }
       }}
+      onRefresh={() => setKey((key) => key + 1)}
     >
       <Theme
+        key={key}
         accentColor="iris"
         panelBackground="solid"
         style={{ backgroundColor: "var(--gray-1)" }}
